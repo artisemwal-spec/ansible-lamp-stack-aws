@@ -10,13 +10,13 @@ It demonstrates Infrastructure as Code (IaC), configuration management, and secu
 
 ## 🏗 Architecture
 
-* **1 Control Node (Public Subnet)**
-
-  * Runs Ansible and manages all servers
+* **1 Control Node and web Server(Public Subnet)**
+* Runs Ansible and manages all servers
+* 🌐 Web Server (Apache)
 
 * **3 Managed Nodes (Private Subnet)**
 
-  * 🌐 Web Server (Apache)
+  
   * ⚙️ App Server (PHP)
   * 🗄 Database Server (MySQL)
 
