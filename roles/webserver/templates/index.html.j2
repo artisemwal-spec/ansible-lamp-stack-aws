@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ app_name }} - Deployed by Ansible</title>
+	<style>
+		body{ font-family: Arial; text-align: center; margin-top: 50px; }
+		.container{background: white; padding:30px; border-radius:10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: inline-block; }
+                h1 { color: #2E5FA3; }
+                p { font-size: 16px; color: #555; }
+		.highlight { color: #27ae60; font-weight: bold; }
+	</style>
+</head>
+<body>
+	<div class="container">
+	<h1>{{ app_name }}</h1>
+        <p class="highlight"> Deployed Successfully using Ansible</p>
+	<hr>
+
+	<p><strong>Server Name:</strong> {{ inventory_hostname }}</p>
+	<p><strong>Private IP:</strong> {{ ansible_host }}</p>
+	<p><strong>Operating System:</strong> {{ ansible_distribution }} {{ ansible_distribution_version }}</p>
+	<p><strong>Date Deployed:</strong> {{ ansible_date_time.date }}</p>
+	<p><strong>Time:</strong> {{ ansible_date_time.time }}</p>
+
+	<hr>
+	
+	<p>Automation powered by Ansible </p>
+	</div>
+</body>
+</html>

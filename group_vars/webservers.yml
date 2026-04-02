@@ -1,0 +1,6 @@
+#Variables for web servers only
+
+http_port: 80
+web_root: /var/www/html
+apache_user: www-data
+

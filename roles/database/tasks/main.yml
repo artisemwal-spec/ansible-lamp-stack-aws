@@ -1,0 +1,42 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/database
+
+- block:
+
+  - name: Create application database
+    mysql_db:
+     name: "{{ db_name }}"
+     state: present
+     login_unix_socket: /var/run/mysqld/mysqld.sock
+
+
+  - name: Create database user
+    mysql_user:
+     name: "{{ db_user }}"
+     password: '{{ db_password }}'
+     priv: "{{ db_name }}.*:ALL"
+     state: present
+     login_unix_socket: /var/run/mysqld/mysqld.sock
+
+  rescue:
+
+  - name: Print error message
+    debug:
+      msg: "Database setup failed!"
+
+  always:
+
+  - name: Always print complete message
+    debug:
+      msg: "Database task attempted"
+
+
+  - name: Check Mysql status
+    command: systemctl is-active mysql
+    register: mysql_status
+    changed_when: false
+
+  - name: Print Musql status
+    debug:
+      msg: "Mysql is {{ mysql_status.stdout }}"

@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/appserver
+
+
+- name: Install PHP and modules
+  apt:
+    name:
+     - php
+     - php-mysql
+     - php-curl
+     - php-json
+     - libapache2-mod-php
+    state: present
+  notify: Restart Apache
+
+

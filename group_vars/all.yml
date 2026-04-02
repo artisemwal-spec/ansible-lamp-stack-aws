@@ -1,0 +1,13 @@
+---
+
+app_name: myapp
+timezone: Asia/Kolkata
+common_packages:
+  - curl
+  - wget
+  - vim
+  - git
+  - unzip
+  - net-tools
+
+

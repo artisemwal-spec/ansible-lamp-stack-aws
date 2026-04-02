@@ -1,0 +1,38 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/database
+
+-block:
+
+  - name: Install MySQL server
+    apt:
+     name:
+      - mysql-server
+      - mysql-client
+      - python3-pymysql
+     state: present
+     login_unix_socket: /var/run/mysqld/mysqld.sock
+
+  - name: Start and enable MySQL
+    service:
+     name: mysql
+     state: started
+   enabled: yes
+
+- name: Create application database
+  mysql_db:
+   name: "{{ db_name }}"
+   state: present
+   login_unix_socket: /var/run/mysqld/mysqld.sock
+
+
+- name: Create database user
+  mysql_user:
+   name: "{{ db_user }}"
+   password: '{{ db_password }}'
+   priv: "{{ db_name }}.*:ALL"
+   state: present
+   login_unix_socket: /var/run/mysqld/mysqld.sock
+  notify: Restart MySQL
+
+
